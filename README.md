@@ -16,6 +16,36 @@ of [Michael Drwiega's work on the Bosch IMU Driver for ROS 1](https://github.com
 The default mode is I2C.
 To select UART mode connect the `3.3V` pin to the `PS1` pin.
 
+### Hardware setup
+from  https://github.com/whyscience/ros_imu_bno055
+
+There are different boards that incorporate the BNO055 IMU. The cheapest one is from Aliexpress. This board has two
+solder bridges called PS0 and PS1 used to select the type of communication.
+
+On the other hand, on this board the solder bridges are inverted. This means that its state is 1 if the bridge is not
+soldered. If the bridge is soldered the state is 0. The table on the left, obtained from the BNO055 datasheet, shows the
+communication modes based on PS0 and PS1
+
+![img.png](docs/img.png)
+![img_1.png](docs/img_1.png)
+
+**To use the IMU in this package**, it must be configured in **UART mode** to be able to communicate with the serial to
+USB converter. Therefore PS0 = 0 and PS1 = 1. Remember that on this board the solder bridges are inverted, so the PS1
+bridge must be unsolder.
+
+![img_2.png](docs/img_2.png)
+
+Finally, connect the IMU to the serial to USB converter. The Rx and Tx cables are crossed. The power of the BNO055
+module is 5V
+
+If you are using a different board, for example the Adafruit board or a different Chinese board,
+use [this link](https://gr33nonline.wordpress.com/2019/04/19/dont-get-the-wrong-bno055/)
+
+#### 特别注意
+
+1. 对于GY-BNO055，采用上面的方式，断开PS1，连接PS0
+2. 但是对于GY-BNO055，是相反的，断开PS0，连接PS1
+
 ### CP2104 USB-to-UART Bridge
 
 When using a CP2104 USB-to-UART Bridge:
@@ -28,6 +58,7 @@ When using a CP2104 USB-to-UART Bridge:
 | SCL    | TXD           |
 
 **NOTE: on the CP2104 the pins above refer to the FTDI pins at the opposite end from the USB connector
+
 
 ---
 
@@ -85,13 +116,13 @@ ros2 service call /bno055/calibration_request example_interfaces/srv/Trigger
 
 ROS topics published by this ROS2 Node:
 
-- **bno055/imu** [(sensor_msgs/Imu)](http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html)
-- **bno055/imu_raw** [(sensor_msgs/Imu)](http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html)
-- **bno055/temp** [(sensor_msgs/Temperature)](http://docs.ros.org/api/sensor_msgs/html/msg/Temperature.html); The
-  sensor's ambient temperature
-- **bno055/mag** [(sensor_msgs/MagneticField)](http://docs.ros.org/api/sensor_msgs/html/msg/MagneticField.html)
-- **bno055/grav** [(geometry_msgs/Vector3)](http://docs.ros.org/en/api/geometry_msgs/html/msg/Vector3.html)
-- **bno055/calib_status** [(std_msgs/String)](http://docs.ros.org/en/api/std_msgs/html/msg/String.html) :
+- **imu/data** [(sensor_msgs/Imu)](http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html)
+- **imu/data_raw** [(sensor_msgs/Imu)](http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html)
+- **imu/temp** [(sensor_msgs/Temperature)](http://docs.ros.org/api/sensor_msgs/html/msg/Temperature.html); The sensor's
+  ambient temperature
+- **imu/mag** [(sensor_msgs/MagneticField)](http://docs.ros.org/api/sensor_msgs/html/msg/MagneticField.html)
+- **imu/grav** [(geometry_msgs/Vector3)](http://docs.ros.org/en/api/geometry_msgs/html/msg/Vector3.html)
+- **imu/calib_status** [(std_msgs/String)](http://docs.ros.org/en/api/std_msgs/html/msg/String.html) :
   Sensor Calibration Status as JSON string - e.g. `{"sys": 3, "gyro": 3, "accel": 0, "mag": 3}`
 
 While _bno055_ is the default ROS topic prefix, it can be configured by following the directions above.
@@ -164,3 +195,4 @@ See [www.flake8rules.com](https://www.flake8rules.com/) for more detailed inform
 
 **Note:** We take advantage of [flake8's noqa mechanisim](https://flake8.pycqa.org/en/3.1.1/user/ignoring-errors.html)
 to selectively ignore some errors. Just search for `# noqa:` in the source code to find them.
+

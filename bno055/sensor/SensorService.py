@@ -55,8 +55,8 @@ class SensorService:
         QoSProf = QoSProfile(depth=10)
 
         # create topic publishers:
-        self.pub_imu_raw = node.create_publisher(Imu, prefix + 'imu_raw', QoSProf)
-        self.pub_imu = node.create_publisher(Imu, prefix + 'imu', QoSProf)
+        self.pub_imu_raw = node.create_publisher(Imu, prefix + 'data_raw', QoSProf)
+        self.pub_imu = node.create_publisher(Imu, prefix + 'data', QoSProf)
         self.pub_mag = node.create_publisher(MagneticField, prefix + 'mag', QoSProf)
         self.pub_grav = node.create_publisher(Vector3, prefix + 'grav', QoSProf)
         self.pub_temp = node.create_publisher(Temperature, prefix + 'temp', QoSProf)
