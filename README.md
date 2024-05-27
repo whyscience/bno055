@@ -107,7 +107,7 @@ The current calibration values can be requested via the **calibration_request** 
 *CONFIGMODE** for a short time):
 
 ```
-ros2 service call /bno055/calibration_request example_interfaces/srv/Trigger
+ros2 service call /imu/calibration_request example_interfaces/srv/Trigger
 ```
 
 ---
@@ -195,4 +195,3 @@ See [www.flake8rules.com](https://www.flake8rules.com/) for more detailed inform
 
 **Note:** We take advantage of [flake8's noqa mechanisim](https://flake8.pycqa.org/en/3.1.1/user/ignoring-errors.html)
 to selectively ignore some errors. Just search for `# noqa:` in the source code to find them.
-
