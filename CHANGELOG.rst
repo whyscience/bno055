@@ -40,7 +40,7 @@ Changelog for package bno055
   bring over updates
 * Merge pull request `#44 <https://github.com/flynneva/bno055/issues/44>`_ from Towflos/develop
 * fixed setting of calibration data, added default values for mag and acc radius
-* added example_interfaces to package.xml, added service information to README.md
+* added std_srvs to package.xml, added service information to README.md
 * cleanup
 * prefix added to service
 * removed seq, fixed parameters, refactored reading of calibratio data, added service to request calibration data

@@ -107,7 +107,7 @@ The current calibration values can be requested via the **calibration_request** 
 *CONFIGMODE** for a short time):
 
 ```
-ros2 service call /imu/calibration_request example_interfaces/srv/Trigger
+ros2 service call /imu/calibration_request std_srvs/srv/Trigger
 ```
 
 ---
