@@ -52,7 +52,7 @@ class NodeParameters:
         # Declare parameters of the ROS2 node and their default values:
 
         # The topic prefix to use (can be empty if not required)
-        node.declare_parameter(name='ros_topic_prefix', value='bno055/')
+        node.declare_parameter(name='ros_topic_prefix', value='imu/')
         # The type of the sensor connection. Either "uart" or "i2c":
         node.declare_parameter(name='connection_type', value=UART.CONNECTIONTYPE_UART)
         # I2C bus number
@@ -66,7 +66,7 @@ class NodeParameters:
         # UART Timeout in seconds
         node.declare_parameter('uart_timeout', value=0.1)
         # tf frame id
-        node.declare_parameter('frame_id', value='bno055')
+        node.declare_parameter('frame_id', value='imu_link')
         # Node timer frequency in Hz, defining how often sensor data is requested
         node.declare_parameter('data_query_frequency', value=10)
         # Node timer frequency in Hz, defining how often calibration status data is requested

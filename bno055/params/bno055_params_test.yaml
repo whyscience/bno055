@@ -28,7 +28,7 @@
 
 bno055:
   ros__parameters:
-    ros_topic_prefix: "bno055/"
+    ros_topic_prefix: "imu/"
     connection_type: "uart"
     uart_port: "/dev/ttyUSB0"
     uart_baudrate: 115200
