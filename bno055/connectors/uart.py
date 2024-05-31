@@ -30,13 +30,12 @@
 # Connector for UART integration of the BNO-055
 # See also https://pyserial.readthedocs.io/en/latest/pyserial_api.html
 import sys
+
 import serial
-
-from rclpy.node import Node
-
 from bno055 import registers
-from bno055.error_handling.exceptions import BusOverRunException, TransmissionException
 from bno055.connectors.Connector import Connector
+from bno055.error_handling.exceptions import BusOverRunException, TransmissionException
+from rclpy.node import Node
 
 
 class UART(Connector):
@@ -46,7 +45,7 @@ class UART(Connector):
 
     def __init__(self, node: Node, baudrate, port, timeout):
         """Initialize the UART class.
-        
+
         :param node: a ROS node
         :param baudrate: baudrate to configure UART communication to
         :param port: UART port to connect to
@@ -63,7 +62,7 @@ class UART(Connector):
 
     def connect(self):
         """Connect to the sensor.
-        
+
         :return:
         """
         self.node.get_logger().info('Opening serial port: "%s"...' % self.port)
@@ -99,7 +98,6 @@ class UART(Connector):
             raise TransmissionException('Unexpected length of READ-request response: %s'
                                         % buf_in.__len__())
 
-        
         # Check for READ result (success or failure):
         if buf_in[0] == registers.COM_START_BYTE_ERROR_RESP:
             # Error 0x07 (BUS_OVER_RUN_ERROR) can be "normal" if data fusion is not yet ready
@@ -109,15 +107,15 @@ class UART(Connector):
             else:
                 raise TransmissionException('READ-request failed with error code %s'
                                             % hex(buf_in[1]))
-        
+
         # Check for correct READ response header:
         if buf_in[0] != registers.COM_START_BYTE_RESP:
             raise TransmissionException('Wrong READ-request response header %s' % hex(buf_in[0]))
 
-        if (buf_in.__len__()-2) != buf_in[1]:
+        if (buf_in.__len__() - 2) != buf_in[1]:
             raise TransmissionException('Payload length mismatch detected: '
                                         + '  received=%s, awaited=%s'
-                                        % (buf_in.__len__()-2, buf_in[1]))
+                                        % (buf_in.__len__() - 2, buf_in[1]))
 
         # Check for correct READ-request response length
         if buf_in.__len__() != (2 + length):
@@ -157,4 +155,3 @@ class UART(Connector):
         if (buf_in.__len__() != 2) or (buf_in[1] != 0x01):
             return False
         return True
-

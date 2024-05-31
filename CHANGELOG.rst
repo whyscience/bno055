@@ -32,7 +32,7 @@ Changelog for package bno055
 * Fix invalid log string variable expansion
 * Merge pull request `#49 <https://github.com/flynneva/bno055/issues/49>`_ from sjev/operation_mode
 * add device mode setting
-* Contributors: Andrew Symington, Evan Flynn, Jev 
+* Contributors: Andrew Symington, Evan Flynn, Jev
 
 0.3.0 (2022-03-22)
 ------------------

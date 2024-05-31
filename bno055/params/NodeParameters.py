@@ -27,9 +27,9 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-from bno055.connectors.uart import UART
-from bno055.connectors.i2c import I2C
 from bno055 import registers
+from bno055.connectors.i2c import I2C
+from bno055.connectors.uart import UART
 from rclpy.node import Node
 
 

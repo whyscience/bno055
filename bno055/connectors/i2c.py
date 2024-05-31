@@ -27,13 +27,11 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 
-from smbus import SMBus
-
-from rclpy.node import Node
-
 from bno055 import registers
 from bno055.connectors.Connector import Connector
 from bno055.error_handling.exceptions import TransmissionException
+from rclpy.node import Node
+from smbus import SMBus
 
 
 class I2C(Connector):
@@ -43,7 +41,7 @@ class I2C(Connector):
 
     def __init__(self, node: Node, i2c_bus=0, i2c_addr=registers.BNO055_ADDRESS_A):
         """Initialize the I2C class.
-        
+
         :param node: a ROS node
         :param i2c_bus: I2C bus to use
         :param i2c_addr: I2C address to connect to
@@ -55,7 +53,7 @@ class I2C(Connector):
 
     def connect(self):
         """Connect to the sensor
-        
+
         :return:
         """
         returned_id = self.bus.read_byte_data(self.address, registers.BNO055_CHIP_ID_ADDR)
@@ -82,7 +80,7 @@ class I2C(Connector):
 
     def write(self, reg_addr, length, data: bytes):
         """Write data to sensor via I2C.
-        
+
         :param reg_addr: The register address
         :param length: The data length
         :param data: data to transmit
@@ -92,7 +90,7 @@ class I2C(Connector):
         while bytes_left_to_write > 0:
             write_len = min(bytes_left_to_write, 32)
             write_off = length - bytes_left_to_write
-            datablock = list(data[write_off : write_off + write_len])
+            datablock = list(data[write_off: write_off + write_len])
             self.bus.write_i2c_block_data(
                 self.address, reg_addr + write_off, datablock)
             bytes_left_to_write -= write_len

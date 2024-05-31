@@ -17,6 +17,7 @@ The default mode is I2C.
 To select UART mode connect the `3.3V` pin to the `PS1` pin.
 
 ### Hardware setup
+
 from  https://github.com/whyscience/ros_imu_bno055
 
 There are different boards that incorporate the BNO055 IMU. The cheapest one is from Aliexpress. This board has two

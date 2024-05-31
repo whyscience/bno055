@@ -30,12 +30,12 @@
 import sys
 import threading
 
+import rclpy
 from bno055.connectors.i2c import I2C
 from bno055.connectors.uart import UART
 from bno055.error_handling.exceptions import BusOverRunException
 from bno055.params.NodeParameters import NodeParameters
 from bno055.sensor.SensorService import SensorService
-import rclpy
 from rclpy.node import Node
 
 

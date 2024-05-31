@@ -17,7 +17,7 @@ A ROS2 driver for the sensor IMU Bosch BNO055.
    error_handling
    params
    sensor
-   registers 
+   registers
 
 Indices and tables
 ==================

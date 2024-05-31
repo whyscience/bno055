@@ -21,7 +21,7 @@ print(os.path.abspath('../'))
 # -- Project information -----------------------------------------------------
 
 project = 'bno055'
-copyright = '2021, Evan Flynn, Manfred Novotny'
+_copyright = '2021, Evan Flynn, Manfred Novotny'
 author = 'Evan Flynn, Manfred Novotny'
 
 # The short X.Y version

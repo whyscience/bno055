@@ -12,4 +12,3 @@ connectors
 .. automodule:: bno055.connectors.i2c
     :members:
     :show-inheritance:
-
